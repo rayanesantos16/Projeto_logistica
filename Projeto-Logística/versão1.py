@@ -1,12 +1,10 @@
-estoque =  []
+estoque = []
 
-
-def produto_por_id(id_produto):
+def adicionar_produto():
+    print("\n===== ADICIONAR PRODUTO =====")
+    produto_id = int(input("Digite o ID do produto (apenas números): "))
+    
+    id_existe = False
     for produto in estoque:
-        
-        
-        
-        
-        
-        print("")
-
+        if produto[0] == produto_id:
+            id_existe = True
