@@ -48,3 +48,47 @@ def buscar_produto():
 
     if not achou:
         print("Produto não está no estoque.")
+
+def atualizar_estoque():
+    print("\n===== ADICIONAR AO ESTOQUE =====")
+    produto_id = int(input("Digite o ID do produto: "))
+
+    achou = False
+    for i in range(len(estoque)):
+        if estoque[i][0] == produto_id:
+            achou = True
+            
+            produto_removido = estoque.pop(i)
+            
+            id_produto = produto_removido[0]
+            nome_produto = produto_removido[1]
+            quantidade_p = produto_removido[2]
+            local_produto = produto_removido[3]
+
+            print(f"Produto selecionado: {nome_produto} (Quantidade atual: {quantidade_p}i)ade")
+            print("1. Entrada (+)")
+            print("2. Saída (-)")
+            opcao = input("Escolha uma operação: ")
+            quantidade_alterar = int(input("Digite a quantidade: "))
+
+            sucesso = False
+            if opcao == '1':
+                quantidade_p = quantidade_p + quantidade_alterar
+                print(f"Sucesso! Nova quantidade: {quantidade_p}")
+                sucesso = True
+            elif opcao == '2':
+                if quantidade_p >= quantidade_alterar:
+                    quantidade_p = quantidade_p - quantidade_alterar
+                    print(f"Sucesso! Nova quantidade: {quantidade_p}")
+                    sucesso = True
+                else:
+                    print("Erro: Estoque insuficiente.")
+            else:
+                print("Opção inválida.")
+
+            produto_atualizado = [id_produto, nome_produto, quantidade_p, local_produto]
+            estoque.insert(i, produto_atualizado)
+
+    if not achou:
+        print("Produto não esta no estoque.")
+
